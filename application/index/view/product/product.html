@@ -1,0 +1,78 @@
+﻿{extend name="index/base"/}
+{block name="tdk"} 
+{volist name="tdkResult" id="tdk"}
+{volist name="manResult" id="man"}
+{if $man.title==null}
+<title>{$tdk.title}</title>
+{else}
+<title>{$man.title}</title>
+{/if}
+<meta name="description" content="{$man.description}" />
+{if $man.keywords==null}
+<meta name="keywords" content="{$tdk.keywords}"/>
+{else}
+<meta name="keywords" content="{$man.keywords}"/>
+{/if}
+{/volist}
+{/volist}
+{/block}
+{block name="CSS"} 
+<link rel="stylesheet" type="text/css" href="__INDEX__/css/product.css">
+<link rel="stylesheet" href="__INDEX__/fonts/iconfont.css">
+<link rel="stylesheet" href="__INDEX__/font_pci5q13lrrk/iconfont.css">
+{/block}
+{block name="content"}
+ <!--内容-->
+<div id="tabs">
+  <div class="content">
+    <div class="gwidth">
+     <ul class="tab">
+         <li class="{if $mains==null}cur{/if}" id="qb"> 
+           <a href="/product.html">全部</a>
+         </li>
+         {volist name="mainResult" id="main"}
+         <li id="dl" class="{if $main.name==$mains}cur{/if}">
+          <a href="/product1/{$main.id}.html" name="product">{$main.name}</a>
+         </li>
+         {/volist}
+      </ul> 
+      <ul class="con_top_right clearfix">
+            <li><span class="iconfont icon-jia-"></span></li>
+            <li style="margin-left:8px;"><a href="">您的位置：</a></li>
+            <li><a href="/index.html">首页&gt;</a></li>
+            <li><a href="/product.html">产品中心&gt;</a></li>
+            {if $mains!=null}
+            {volist name="mainResult" id="main"}
+            {if $main.name==$mains}
+            <li><a href="/product1/{$main.id}"id="fd1">{$main.name}</a></li>
+            {/if}
+            {/volist}
+            {else}
+            <li><a href="/product.html"id="fd1">全部</a></li>
+            {/if}
+      </ul> 
+ </div>
+</div>
+<div class="cont_bo gwidth">
+ <div class="ziye_box clearfix">
+  {volist name="productResult" id="product"}
+  <div class="ziye_box_tp img1" style="{if ($key+1)%4==0}margin-right:0px;{/if}">
+    <img src="{$product.img}" alt="{$product.name}">
+    <div class="ziye_box_img">
+      {if $mains!=null}
+      <p class="liulan"><a href="/product2/{$product.id}.html">详情了解</a></p>
+      {else}
+      <p class="liulan"><a href="/whole/{$product.id}.html">详情了解</a></p>
+      {/if}
+    </div>
+      <div class="t_p">
+        <h4>{$product.name}</h4>
+        {$product.content|htmlspecialchars_decode|strip_tags}
+      </div>
+    </div>
+    {/volist}
+</div>
+{$page}
+</div>
+</div>
+{/block}

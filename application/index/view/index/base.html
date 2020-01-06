@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">  
+  {block name="tdk"} 
+  <title>保定太阳能路灯-太阳能路灯厂家-保定博楷电子科技有限公司</title>
+  <meta name="Description" content="" />
+  <meta name="Keywords" content="保定太阳能路灯,太阳能路灯厂家"/> 
+  {/block}
+  <link rel="stylesheet" type="text/css" href="__INDEX__/css/style.css">
+  <link rel="stylesheet" href="__INDEX__/css/public.css">
+  <link rel="stylesheet" href="__INDEX__/font/iconfont.css">
+  <link rel="stylesheet" href="__INDEX__/swiper/dist/css/swiper.min.css">
+  <link rel="stylesheet" href="__INDEX__/fonth/iconfont.css">
+  <script src="__INDEX__/js/jquery-1.3.2.min.js"></script>
+  <script src="__INDEX__/js/jquery-1.11.0.js"></script>
+  <link rel="Bookmark" href="../favicon.ico" >
+  <link rel="Shortcut Icon" href="../favicon.ico" />
+  {block name="CSS"} {/block}
+</head>
+<body>
+  <!-- top -->
+  <div class="top gwidth clearfix">
+             {volist name="setResult" id="set"}
+            <img src="{$set.logo}" alt="{$set.name}">
+            <p>{$set.name}</p>
+            {/volist}
+            <span class="sp11">客户至上，服务周到</span></br>
+            <span class="sp22">质量第一，科技领先</span>
+    <div class="right fr">
+      <span class="iconfont icon-dianhua-1"></span>
+      <span class="sp1">咨询热线:</span></br>
+      <span class="sp2">0312-5858315</span>  
+    </div> 
+  </div>
+  <!--head-->
+<div class="head">
+    <div class="header gwidth">
+      <div class="container">
+        <div class="nav">
+          <ul class="top-menu">
+            {volist name="navberResult" id="navber"}
+           
+            <li class="li1" style="{if $navber.href==$foo}background:#045fb2;{/if}">
+              <a href="/{$navber.href}.html">{$navber.name}</a>
+              <ul class="drop-menu menu-4">
+               {if $navber.id==2}
+                 {volist name="mainpResult" id="mainp"}
+                 <li><a href="/product1/{$mainp.id}.html">{$mainp.name}</a></li>
+                 {/volist}
+               {/if}
+               {if $navber.id==3}
+                 {volist name="maineResult" id="maine"}
+                 <li><a href="/case1/{$maine.id}.html">{$maine.name}</a></li>
+                 {/volist}
+               {/if}
+               {if $navber.id==4}
+                 {volist name="newsnResult" id="newsn"}
+                 <li><a href="/news1/{$newsn.id}.html">{$newsn.name}</a></li>
+                 {/volist}
+               {/if}
+               {if $navber.id==5}
+                 {volist name="combResult" id="comb" length="1"}
+                 <li><a href="/company.html">{$comb.name}</a></li>
+                 {/volist}
+                 {volist name="culbResult" id="culb" length="1"}
+                 <li><a href="/culture.html">{$culb.title}</a></li>
+                 {/volist}                 
+                 {volist name="honbResult" id="honb" length="1"}
+                 <li><a href="/honor.html">{$honb.name}</a></li>
+                 {/volist}
+               {/if}
+              </ul> 
+            </li>
+            {/volist}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 轮播图 -->
+  <div class="lb clearfix">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+         {volist name="bannerResult" id="banner"}
+          <div class="swiper-slide">
+              <img src="{$banner.img}" alt="{$banner.title}">
+          </div>
+          {/volist}
+        </div>
+        <!--分页器 -->
+        <div class="swiper-pagination"></div>
+        <!--导航按钮 -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+    </div>
+  <script src="__INDEX__/swiper/dist/js/swiper.min.js"></script>
+  <script src="__INDEX__/js/banner.js"></script>
+{block name="content"} <!-- 中部内容 -->{/block}
+<!-- foot -->
+<div class="footer">
+    <div class="line"> 
+        <div class="top gwidth"><!--顶部列表-->
+           <ul class="one_menu">
+            {volist name="navberResult" id="navber"}
+            {if $navber.id!=1}
+             <li><a href="/product.html">{$navber.name}</a><span>|</span></li>
+            {/if}
+            {/volist}
+            <li><a href="#">网站地图</a></li>
+            </ul>
+        </div>
+    </div>
+  <div class="bottom gwidth">
+    <div class="b_left">
+      {volist name="contactResult" id="contact"}
+            <p>联系电话&nbsp;:&nbsp;{$contact.phone}</p>
+            <p>联系地址&nbsp;:&nbsp;{$contact.url}</p>
+            <p>E-mail&nbsp;:&nbsp;{$contact.email}</p>
+      {/volist}
+            <p>友情链接&nbsp;:&nbsp;
+              {volist name="linksResult" id="links"}
+                <a href="{$links.look_name}" target="_blank">{$links.name}</a>
+              {/volist}
+            </p>
+    </div>
+    <div class="b_right">
+     {volist name="setResult" id="set"}
+      <div class="one">
+          <p>网站二维码</p>
+          <img src="{$set.website}" alt="微信公众号">
+      </div>
+      <div class="two">
+         <p>微信二维码</p>
+          <img src="{$set.wechat}" alt="微信二维码">
+      </div>
+      {/volist}
+    </div> 
+  </div>
+  <div class="file">
+    {volist name="copyResult" id="copy"}
+        <p>版权所有<a href="/admin" style="color:#fff;">&copy;</a>{$copy.copyright}&nbsp;&nbsp;&nbsp;网 址：{$copy.website}&nbsp;&nbsp;备案号：{$copy.record}&nbsp;  网络制作：<a href="{$copy.looks}" style="color: #fff;" target="_blank">{$copy.support}</a></p>
+        {/volist}
+    </div>
+</div>
+<!-- 轮播 -->
+<script src="__INDEX__/js/banners.js"></script>
+ <!-- 弹窗 -->
+    <div class="side">
+      <ul>
+        {volist name="setResult" id="set"}
+        <li id="qqonline">
+          <a href="http://wpa.qq.com/msgrd?v=3&amp;uin={$set.qq}&amp;site=qq&amp;menu=yes" target="_blank">
+            <i class="bgs1"></i><p>QQ咨询</p>
+          </a>
+        </li>
+        <li class="sideewm">
+          <i class="bgs3"></i>官方微信
+            <div class="ewBox son">
+              <img src="{$set.wechat}" alt="微信二维码">
+            </div>
+        </li>
+        <li class="sideetel"><i class="bgs4"></i>联系电话
+            <div class="telBox son">
+                <dd class="bgs1"><span>座机</span><p>{$set.hotline}</p></dd>
+                <dd class="bgs2"><span>手机</span><p>{$set.phone}</p></dd>
+            </div>
+        </li>
+        {/volist}
+         <li class="sidetop" onClick="goTop()"><i class="bgs6"></i>返回顶部</li>
+      </ul>
+    </div>
+      <script src="__INDEX__/js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+      <script>
+        function goTop() {
+          $('html,body').animate({
+            scrollTop: 0
+          }, 500)
+        }
+      </script>
+<script src="__INDEX__/js/popup.js"></script>
+</body>
+</html>

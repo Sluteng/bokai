@@ -1,0 +1,112 @@
+{extend name="index/base"/}
+{block name="tdk"} 
+{volist name="tdkResult" id="tdk"}
+{volist name="infResult" id="inf"}
+{if $inf.title==null}
+<title>{$tdk.title}</title>
+{else}
+<title>{$inf.title}</title>
+{/if}
+<meta name="description" content="{$inf.description}" />
+{if $inf.keywords==null}
+<meta name="keywords" content="{$tdk.keywords}"/>
+{else}
+<meta name="keywords" content="{$inf.keywords}"/>
+{/if}
+{/volist}
+{/volist}
+{/block}
+{block name="CSS"} 
+<link rel="stylesheet" type="text/css" href="__INDEX__/css/zhaopinxinxi.css">
+{/block}
+{block name="content"} 
+  <!--内容-->
+<a name="navbar">
+<!-- d导航目录 -->
+<div class="sidebar">
+  <div class="gwidth">
+    {volist name="infResult" id="inf"}
+    <p class="desc">{$inf.name}</p>  
+    {/volist}  
+      <div class="nav_slide">
+        <a href="index.html" class="idex"></a>
+        <p class="activ">您的位置：</p>
+        <a href="/index.html" class="slide_index">首页</a>
+        <span class="arrow">></span>
+        {volist name="infResult" id="inf"}
+        <a href="/{$inf.href}.html" class="slide_index" id="fd1">{$inf.name}</a>    
+        {/volist} 
+      </div>
+  </div>
+</div>
+<!-- 招聘内容 -->
+<div class="recruit clearfix">
+  <div class="recruit-left">
+    <ul class="recruit_list">
+      {volist name="inforResult" id="infor"}
+      {if $key==0 || $key%2==0}
+      <li class="opening">
+        <h5>{$infor.position}</h5>
+        <div class="brief"><span>联系电话：</span>{$infor.telphon}</div>
+        <div class="brief"><span>工作地点：</span>{$infor.work}</div>
+        <div class="brief"><span>岗位要求：</span>
+        <p>{$infor.post}</p>
+        </div>
+        <div class="brief" style="margin-bottom: 0;">
+          <span>岗位职责：</span>
+          <p>{$infor.duty}</p>
+        </div>
+        <a class="open">展开<span class="aroww"></span></a>
+      </li>
+      {/if}
+      {/volist}
+<!--       <li class="opening">
+        <h5>技术人员</h5>
+        <div class="brief"><span>联系电话：</span>17732268606</div>
+        <div class="brief"><span>工作地点：</span>保定上谷大观A座</div>
+        <div class="brief"><span>岗位要求：</span>
+          <p>快速的学习和研究能力及团队协作能力</p>
+        </div>
+        <div class="brief" style="margin-bottom: 0;"><span>岗位职责：</span>
+          <p>负责技术部门的研发</p>
+        </div>
+        <a href="###" class="open">展开<span class="aroww"></span></a>
+      </li> -->
+   </ul>
+  </div>
+  <div class="recruit_right">
+    <ul class="recruit_list">
+      {volist name="inforResult" id="infor"}  
+      {if $key==1 || ($key+1)%2==0}
+      <li class="opening">
+        <h5>{$infor.position}</h5>
+        <div class="brief"><span>联系电话：</span>{$infor.telphon}</div>
+        <div class="brief"><span>工作地点：</span>{$infor.work}</div>
+        <div class="brief"><span>岗位要求：</span>
+          <p>{$infor.post}</p>
+        </div>
+        <div class="brief" style="margin-bottom: 0;"><span>岗位职责：</span>
+          <p>{$infor.duty}</p>
+        </div>
+        <a class="open">展开<span class="aroww"></span></a>
+      </li>
+      {/if}
+      {/volist}
+<!--       <li class="opening">
+        <h5>采购</h5>
+        <div class="brief"><span>联系电话：</span>17732268606</div>
+        <div class="brief"><span>工作地点：</span>保定上谷大观A座</div>
+        <div class="brief"><span>岗位要求：</span>
+          <p>有责任心，大专学历，有采购经验者优先</p>
+        </div>
+        <div class="brief" style="margin-bottom: 0;"><span>岗位职责：</span>
+          <p>负责公司的物品采购</p>
+        </div>
+        <a href="###" class="open">展开<span class="aroww"></span></a>
+      </li> -->
+    </ul>
+  </div>
+</div>
+</a>
+<script src="__INDEX__/js/infor.js"></script>
+ {/block}

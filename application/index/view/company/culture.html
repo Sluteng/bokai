@@ -1,0 +1,93 @@
+﻿{extend name="index/base"/}
+{block name="tdk"} 
+{volist name="tdkResult" id="tdk"}
+{volist name="tdkwResult" id="tdkw"}
+{if $tdkw.title==null}
+<title>{$tdk.title}</title>
+{else}
+<title>{$tdkw.title}</title>
+{/if}
+<meta name="description" content="{$tdkw.description}" />
+{if $tdkw.keywords==null}
+<meta name="keywords" content="{$tdk.keywords}"/>
+{else}
+<meta name="keywords" content="{$tdkw.keywords}"/>
+{/if}
+{/volist}
+{/volist}
+{/block}
+{block name="CSS"} 
+<!-- CSS -->
+<link rel="stylesheet" href="__INDEX__/css/products.css">
+<link rel="stylesheet" href="__INDEX__/fonts/iconfont.css">
+<link rel="stylesheet" href="__INDEX__/font_pci5q13lrrk/iconfont.css">
+<!-- CSS -->
+{/block}
+{block name="content"} 
+  <!--内容-->
+ <a name="navbar"></a>
+ <div id="tabs clearfix">
+  <div class="content clearfix">
+    <div class="gwidth">
+     <ul class="tab">
+          {volist name="companyResult" id="company" length="1"}
+          <li><a href="/company.html">{$company.name}</a></li>
+          {/volist}
+          {volist name="cultureResult" id="culture" length="1"}
+          <li class="cur" id="dl"><a href="/culture.html">{$culture.title}</a></li>
+          {/volist}
+          {volist name="honorResult" id="honor" length="1"}
+          <li class="" id="lh"><a href="/honor.html">{$honor.title}</a></li>
+          {/volist}
+     </ul> 
+     <ul class="con_top_right clearfix">
+       <li><span class="iconfont icon-jia-"></span></li>
+       <li style="margin-left:8px;"><a href="#">您的位置：</a></li>
+       <li><a href="/index.html">首页&gt;</a></li>
+       <li><a href="/company.html">关于博楷&gt;</a></li>
+       {volist name="cultureResult" id="culture" length="1"}
+        <li><a href="/culture.html" id="fd1">{$culture.title}</a></li>
+       {/volist}
+      
+     </ul> 
+ </div>
+</div>
+</div>
+<div class="bottom gwidth clearfix">
+   {volist name="cultureResult" id="culture" length="1"}
+    <h2>{$culture.title}</h2>
+    <span>Corporate Culture</span>
+        <p class="ph1">{$culture.content}</p>
+    {/volist}
+    <div class="show clearfix">
+      <ul class="product">
+         {volist name="coreResult" id="core" length="3"}
+        <li style="{if $key==2}margin-right:0{/if}">
+          <img src="{$core.img}" alt="{$core.title}">
+          <h3>{$core.title}</h3>
+          <p>{$core.content}</p>
+        </li>
+        {/volist}
+      </ul>
+    </div>
+    <div class="btm clearfix">
+      {volist name="valueResult" id="value" length="1"}
+      <h2>{$value.title}</h2>
+      {/volist}
+      <span class="clearfix">Core values</span>
+      <div class="left clearfix">
+        {volist name="valueResult" id="value"}
+        <p class="ph2">{if $key==0}{$value.content}{/if}</p>
+        <p class="ph2">{if $key==2}{$value.content}{/if}</p>
+        {/volist}
+      </div>
+      <div class="right clearfix">
+        {volist name="valueResult" id="value"}
+        <p class="ph2">{if $key==1}{$value.content}{/if}</p>
+        <p class="ph2">{if $key==3}{$value.content}{/if}</p>
+        {/volist}
+      </div> 
+      
+    </div>
+</div>
+{/block}

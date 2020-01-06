@@ -1,0 +1,109 @@
+{extend name="index/base"/}
+{block name="tdk"} 
+{volist name="tdkResult" id="tdk"}
+{volist name="productResult" id="product"}
+{if $product.title==null}
+<title>{$tdk.title}</title>
+{else}
+<title>{$product.title}</title>
+{/if}
+<meta name="description" content="{$product.description}" />
+{if $product.keywords==null}
+<meta name="keywords" content="{$tdk.keywords}"/>
+{else}
+<meta name="keywords" content="{$product.keywords}"/>
+{/if}
+{/volist}
+{/volist}
+{/block}
+{block name="CSS"} 
+<link rel="stylesheet" type="text/css" href="__INDEX__/css/product2.css">
+<link rel="stylesheet" type="text/css" href="__INDEX__/css/product.css">
+<link rel="stylesheet" href="__INDEX__/fonts/iconfont.css">
+<link rel="stylesheet" href="__INDEX__/font_pci5q13lrrk/iconfont.css">
+{/block}
+{block name="content"}
+<a name="pro1">
+<div id="tabs">
+  <div class="content">
+  <div class="gwidth">
+    <ul class="tab">
+      <li class="{if $mains==null}cur{/if}" id="qb"> 
+        <a href="/product.html">全部</a>
+      </li>
+         {volist name="mainResult" id="main"}
+         <li id="dl" class="{if $main.name==$mains}cur{/if}">
+          <a href="/product1/{$main.id}.html" name="product">{$main.name}</a>
+         </li>
+         {/volist}
+    </ul> 
+    <ul class="con_top_right clearfix">
+         <li><span class="xfz iconfont1 icon-jia-"></span></li>
+         <li style="margin-left:10px;"><a>您的位置：</a></li>
+         <li><a href="/index.html">首页&gt;</a></li>
+         <li><a href="/product.html">产品中心&gt;</a></li>
+         <li><a href="/product1/3.html" id="fd1">城市亮化</a></li>
+    </ul> 
+  </div>
+</div>
+
+ <!--内容-->
+ <div class="con gwidth clearfix">
+      <div>
+        {volist name="productResult" id="product"}
+        <div class="con_left">
+            <img src="{$product.img}" alt="{$product.name}" class="fl">
+          <div class="con_right fr">
+            <h3>{$product.name}</h3>
+            <div class="p1">{$product.content|htmlspecialchars_decode}</div>
+          </div>
+        </div>
+     <div class="biaoge">
+       <h4>详细参数</h4>
+       {$product.editorValue|htmlspecialchars_decode}
+     </div>
+     {/volist}
+      <div class="cont_xyp">
+        {volist name="prev" id="pre"}
+        <div class="fl" style="margin-left:20px;">
+          {if $mains!=null}
+          <a href="/product2/{$pre.id}.html" title="{$pre.name}">上一篇:{$pre.name} </a>
+          {else}
+          <a href="/whole/{$pre.id}.html" title="{$pre.name}">上一篇:{$pre.name} </a>
+          {/if}
+        </div>
+        {/volist}
+         {volist name="next" id="nex"}
+          <div class="fr" style="margin-right:20px;">
+            {if $mains!=null}
+            <a href="/product2/{$nex.id}.html" title="{$nex.name}">下一篇:{$nex.name}</a>
+            {else}
+            <a href="/whole/{$nex.id}.html" title="{$nex.name}">下一篇:{$nex.name}</a>
+            {/if}
+          </div>
+        {/volist}
+      </div>
+    </div>
+  <div class="con_bottom gwidth">
+     <h2>为您推荐</h2>
+       <ul class="bar">
+         {volist name="homeResult" id="home"}
+          <li style="{if ($key+1)%4==0}margin-right:0;{/if}">
+            <a href="/product2/{$home.id}.html">
+                <div class="forward">
+                    <img src="{$home.img}" alt="{$home.name}">
+                </div>
+                <div class="tips">
+                    <p class="p1">{$home.content|htmlspecialchars_decode|strip_tags}</p>
+                    <div class="xqlj">详情了解</div>
+                </div>
+            </a>
+              <p class="p2">景观庭院灯</p>
+           </li>
+           {/volist}
+        </ul>
+    </div>
+</div>
+</div>
+</a>
+{/block}

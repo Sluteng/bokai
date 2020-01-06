@@ -1,0 +1,71 @@
+﻿{extend name="index/base"/}
+{block name="tdk"} 
+{volist name="tdkResult" id="tdk"}
+{volist name="tdkzResult" id="tdkz"}
+{if $tdkz.title==null}
+<title>{$tdk.title}</title>
+{else}
+<title>{$tdkz.title}</title>
+{/if}
+<meta name="description" content="{$tdkz.description}" />
+{if $tdkz.keywords==null}
+<meta name="keywords" content="{$tdk.keywords}"/>
+{else}
+<meta name="keywords" content="{$tdkz.keywords}"/>
+{/if}
+{/volist}
+{/volist}
+{/block}
+{block name="CSS"} 
+<!-- CSS -->
+<link rel="stylesheet" href="__INDEX__/css/honor.css">
+<link rel="stylesheet" href="__INDEX__/fonts/iconfont.css">
+<link rel="stylesheet" href="__INDEX__/font_pci5q13lrrk/iconfont.css">
+<!-- CSS -->
+{/block}
+{block name="content"} 
+  <!--内容-->
+ <a name="navbar">
+ <div id="tabs clearfix">
+  <div class="content clearfix">
+    <div class="gwidth">
+     <ul class="tab">
+          {volist name="companyResult" id="company" length="1"}
+          <li><a href="/company.html">{$company.name}</a></li>
+          {/volist}
+          {volist name="cultureResult" id="culture" length="1"}
+          <li id="dl"><a href="/culture.html">{$culture.title}</a></li>
+          {/volist}
+          {volist name="honorResult" id="honor" length="1"}
+          <li class="cur" id="lh"><a href="/honor.html">{$honor.title}</a></li>
+          {/volist}
+            </ul> 
+    <ul class="con_top_right clearfix">
+       <li><span class="iconfont icon-jia-"></span></li>
+       <li style="margin-left:8px;"><a href="#">您的位置：</a></li>
+       <li><a href="/index.html">首页&gt;</a></li>
+       <li><a href="/company.html">关于博楷&gt;</a></li>
+       {volist name="honorResult" id="honor" length="1"}
+        <li><a href="/culture.html" id="fd1">{$honor.title}</a></li>
+       {/volist}
+    </ul> 
+ </div>
+</div>
+</div>
+<!--荣誉资质-->
+<div class="honor">
+<div class="btm gwidth"><!--营业执照-->
+{volist name="honorResult" id="honor" length="1"}
+<h2>{$honor.title}</h2>
+{/volist}
+<p>honor</p>
+<ul class="bottom_menu">
+  {volist name="honorResult" id="honor"}
+  <li style="{if ($key+1)%3==0}padding-right:0;{/if}"><img src="{$honor.img}" alt="{$honor.name}">{$honor.name}</li>
+  {/volist}
+</ul>
+</div>
+{$page}
+</div>
+</a>
+{/block}

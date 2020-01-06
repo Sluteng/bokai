@@ -1,0 +1,79 @@
+{extend name="index/base"/}
+{block name="tdk"} 
+{volist name="tdkResult" id="tdk"}
+{volist name="maincResult" id="main"}
+{if $main.title==null}
+<title>{$tdk.title}</title>
+{else}
+<title>{$main.title}</title>
+{/if}
+<meta name="description" content="{$main.description}" />
+{if $main.keywords==null}
+<meta name="keywords" content="{$tdk.keywords}"/>
+{else}
+<meta name="keywords" content="{$main.keywords}"/>
+{/if}
+{/volist}
+{/volist}
+{/block}
+{block name="CSS"} 
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="__INDEX__/css/case.css">
+<link rel="stylesheet" href="__INDEX__/css/public.css">
+<link rel="stylesheet" href="__INDEX__/fonts/iconfont.css">
+<link rel="stylesheet" href="__INDEX__/font_pci5q13lrrk/iconfont.css">
+<!-- CSS -->
+{/block}
+{block name="content"}
+ <!--内容-->
+ <div id="tabs">
+   <div class="content">
+       <div class="gwidth">
+         <ul class="tab">
+             <li id="qb" class="{if $mainc==null}cur{/if}"><a href="/cases.html">全部</a></li>
+             {volist name="maincaseResult" id="maincase"}
+             <li id="dl" class="{if $maincase.name==$mainc}cur{/if}">
+              <a href="/case1/{$maincase.id}.html">{$maincase.name}</a>
+             </li>
+             {/volist}
+         </ul> 
+         <ul class="con_top_right clearfix">
+             <li><span class="xfz iconfont1 icon-jia-"></span></li>
+             <li style="margin-left:8px;"><a href="/case.html">您的位置：</a></li>
+             <li><a href="/index.html">首页&gt;</a></li>
+             <li><a href="/case.html">案例展示&gt;</a></li>
+             {if $mainc!=null}
+             {volist name="maincaseResult" id="maincase"}
+             {if $maincase.name==$mainc}
+             <li><a href="/case1/{$maincase.id}.html" id="fd1">{$maincase.name}</a></li>
+             {/if}
+             {/volist}
+             {else}
+             <li><a href="/cases.html" id="fd1">全部</a></li>
+             {/if}
+         </ul> 
+       </div>
+   </div>
+ <div class="cont_bo gwidth">
+   <div class="ziye_box clearfix">
+    {volist name="casesResult" id="cases"}
+     <div class="ziye_box_tp img1" style="{if ($key+1)%4==0}margin-right: 0;{/if}">
+         <img src="{$cases.img}" alt="{$cases.name}">
+         <p class="ld">{$cases.name}</p>
+           <div class="ziye_box_img">
+             <p class="p1">{$cases.content|htmlspecialchars_decode|strip_tags}</p>
+             <p class="liulan">
+              {if $mainc!=null}
+              <a href="/casea/{$cases.id}.html">浏览</a>
+              {else}
+              <a href="/casew/{$cases.id}.html">浏览</a>
+              {/if}
+            </p>
+           </div>
+     </div>
+     {/volist}
+   </div>
+   {$page} 
+</div>
+ </div>
+ {/block}

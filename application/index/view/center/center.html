@@ -1,0 +1,161 @@
+{extend name="index/base"/}
+{block name="tdk"} 
+{volist name="tdkResult" id="tdk"}
+{volist name="cenResult" id="cen"}
+{if $cen.title==null}
+<title>{$tdk.title}</title>
+{else}
+<title>{$cen.title}</title>
+{/if}
+<meta name="description" content="{$cen.description}" />
+{if $cen.keywords==null}
+<meta name="keywords" content="{$tdk.keywords}"/>
+{else}
+<meta name="keywords" content="{$cen.keywords}"/>
+{/if}
+{/volist}
+{/volist}
+{/block}
+{block name="CSS"} 
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="__INDEX__/css/message.css">
+<link rel="stylesheet" href="__INDEX__/css/word.css">
+<link rel="stylesheet" href="__INDEX__/css/public.css">
+<link rel="stylesheet" href="__INDEX__/font/iconfont.css">
+<link rel="stylesheet" href="__INDEX__/swiper/dist/css/swiper.min.css">
+<script src="__INDEX__/js/jquery-1.3.2.min.js"></script>
+<!-- CSS -->
+{/block}
+{block name="content"}
+<a name="navbar">
+<!-- d导航目录 -->
+<div class="sidebar">
+  <div class="gwidth">
+    {volist name="cenResult" id="cen"}
+    <p class="desc">{$cen.name}</p>  
+    {/volist}  
+    <div class="nav_slide">
+      <a href="index.html" class="idex"></a>
+      <p class="activ">您的位置：</p>
+      <a href="/index.html" class="slide_index">首页</a>
+      <span class="arrow">></span>
+      {volist name="cenResult" id="cen"} 
+      <a href="/{$cen.href}.html" class="slide_index" id="fd1">{$cen.name}</a>   
+      {/volist}   
+    </div>
+  </div>
+</div>
+  <!-- 内容 -->
+  <div class="liuyan gwidth">
+       <h4>保定博楷电子科技有限公司欢迎您留下宝贵意见!</h4>
+     <table width="60%" border="0" cellspacing="0" cellpadding="0">
+    <form action="/centers.html" method="post" name="gbook" id="gbook">
+      <tr>
+        <td width="40%" height="30" align="center">姓名：</td>
+          <td width="40%" align="left">
+          <input type="text" name="name" size="20"  id="name" title="姓名" style="border:1px solid #ccc; height:30px; line-height:20px;"/>
+          <font color="#cc0000">*</font>
+        </td>
+      </tr>
+      <tr>
+        <td width="40%" align="center">E-mail：</td>
+        <td width="40%" align="left"><input name="email" type="text" id="email" title="email" size="20" style="border:1px solid #ccc; height:30px; line-height:20px;" /></td>
+      </tr>
+      <tr>
+        <td height="50" align="center">电话：</td>
+        <td align="left"><input type="text" id="phone" name="tellphon" size="20" title="电话" style="border:1px solid #ccc; height:30px; line-height:20px;"/>
+          <font color="#cc0000">*</font></td>
+      </tr>
+      <tr>
+        <td height="65"><div align="center">留言主题：</div></td>
+        <td colspan="3" align="left"><input type="text" name="subject" size="42" title="主题" style="border:1px solid #ccc; height:30px; line-height:20px;"/>
+          <font color="#cc0000">*</font></td>
+      </tr>
+      <tr>
+        <td height="50" align="center">留言內容：</td>
+        <td colspan="3" align="left">
+          <textarea name="content" cols="80" rows="9" wrap="virtual" title="详细信息"  style="border:1px solid #ccc;"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td height="50" align="center">验证码:</td>
+        <td>
+         <input type="text" value="" placeholder="请输入验证码（不区分大小写）" class="input-val" style="height:30px;">
+         <canvas id="canvas" width="100" height="43"></canvas>
+         <style type="text/css">
+           #canvas{
+            position: relative;
+            top: 14px;
+           }
+         </style>
+        </td>
+      </tr>
+      <tr>
+        <td height="50"></td>
+        <td colspan="3" align="left">
+          <input type="submit" id="Button1" value="确定提交" name="submit" class="buttom"/>
+          <input type="reset" value="重新填写" name="reset" class="buttom"/>
+        </td>
+      </tr> 
+    </form>
+  </table>
+  <script type="text/javascript">
+    $(function () {
+      var show_num = [];
+      draw(show_num);
+      $("#canvas").click(function (){
+          draw(show_num);
+      })
+        $('#Button1').click(function () {
+            var name=$('#name').val();
+            var email=$('#email').val();
+            var phone=$('#phone').val();
+            var val = $(".input-val").val();
+            var num = show_num.join("");
+            if(name ==  null || name == ''){
+                alert("姓名不能为空");
+                return false;
+            }; 
+            if(email ==  null || email == ''){
+                alert("邮箱不能为空");
+                return false;
+            };
+            if(
+            email.charAt(0)=="."||        
+            email.charAt(0)=="@"||       
+            email.indexOf('@')==-1|| 
+            email.indexOf('.')==-1|| 
+            email.indexOf("@")==email.length-1|| 
+            email.lastIndexOf(".")==email.length-1
+            ){
+            alert("mail地址格式不正确！");
+             return false;
+            };
+            if(phone ==  null || phone == ''){
+                alert("电话号码不能为空");
+                return false;
+            };
+            if(!(/^1[34578]\d{9}$/.test(phone))){
+                alert("电话号码有误，请重填");
+                return false;
+            };
+            if(val ==  null || val == ''){
+                alert("请输入验证码！");
+                return false;
+            }else if(val == num){
+                draw(show_num);
+                return ture;
+              }else{
+                  alert('验证码错误！请重新输入！');
+                  $(".input-val").val('');
+                  draw(show_num);
+                  return false;
+              }
+        })
+    })
+  </script>
+  </div>
+  <script src="__INDEX__/js/jquery-1.11.0.js"></script>
+  <script src="__INDEX__/js/yzm.js"></script>
+  </a>
+{/block}

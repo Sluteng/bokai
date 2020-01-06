@@ -1,0 +1,81 @@
+{extend name="index/base"/}
+{block name="tdk"} 
+{volist name="tdkResult" id="tdk"}
+{volist name="tdkjResult" id="tdkj"}
+{if $tdkj.title==null}
+<title>{$tdk.title}</title>
+{else}
+<title>{$tdkj.title}</title>
+{/if}
+<meta name="description" content="{$tdkj.description}" />
+{if $tdkj.keywords==null}
+<meta name="keywords" content="{$tdk.keywords}"/>
+{else}
+<meta name="keywords" content="{$tdkj.keywords}"/>
+{/if}
+{/volist}
+{/volist}
+{/block}
+{block name="CSS"} 
+<!-- CSS -->
+<link rel="stylesheet" href="__INDEX__/css/company.css">
+<link rel="stylesheet" href="__INDEX__/fonts/iconfont.css">
+<link rel="stylesheet" href="__INDEX__/font_pci5q13lrrk/iconfont.css">
+<!-- CSS -->
+{/block}
+{block name="content"} 
+ 	<!--nav-->
+	<div id="tabs">
+		<div class="content clearfix">
+			<div class="gwidth">
+				<ul class="tab">
+					{volist name="companyResult" id="company" length="1"}
+					<li class="cur"><a href="/company.html">{$company.name}</a></li>
+					{/volist}
+					{volist name="cultureResult" id="culture" length="1"}
+					<li class="" id="dl"><a href="/culture.html">{$culture.title}</a></li>
+					{/volist}
+					{volist name="honorResult" id="honor" length="1"}
+					<li class="" id="lh"><a href="/honor.html">{$honor.title}</a></li>
+					{/volist}
+				</ul> 
+				<ul class="con_top_right clearfix">
+					<li><span class="xfz iconfont1 icon-jia-"></span></li>
+					<li style="margin-left:8px;"><a>您的位置：</a></li>
+					<li><a href="/index.html">首页&gt;</a></li>
+					<li><a href="/company.html">关于博楷&gt;</a></li>
+					{volist name="companyResult" id="company" length="1"}
+					<li><a href="/company.html" id="fd1">{$company.name}</a></li>
+					{/volist}
+					
+				</ul> 
+			</div>
+		</div>
+	<div class="gwidth">
+		<div class="gongsi_zuo">
+			{volist name="companyResult" id="company" length="1"}
+			<h1 class="h">{$company.name}</h1>
+			{/volist}
+			<p class="pp">Company Profile</p>
+			{volist name="companyResult" id="company" length="2"}
+			{if $key==0}
+			   <ul class="gongsi_zuo1">
+				    <li>
+				    	<img src="{$company.img}" height="383px" width="479px" alt="{$company.name}">
+				    </li>
+				    <li>{$company.content|htmlspecialchars_decode|strip_tags}</li>
+			   </ul>
+			 {/if}
+			 {if $key==1}
+			   <ul class="gongsi_you">
+				    <li>
+				    	<img src="{$company.img}" height="383px" width="479px" alt="{$company.name}">
+				    </li>
+				    <li id="gongsi_you1">{$company.content|htmlspecialchars_decode|strip_tags}</li>
+			   </ul>
+			   {/if}
+			   {/volist}
+		</div>
+	</div>
+	</div>
+{/block}

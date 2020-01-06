@@ -1,0 +1,69 @@
+{extend name="index/base"/}
+{block name="tdk"} 
+{volist name="tdkResult" id="tdk"}
+{volist name="conResult" id="con"}
+{if $con.title==null}
+<title>{$tdk.title}</title>
+{else}
+<title>{$con.title}</title>
+{/if}
+<meta name="description" content="{$con.description}" />
+{if $con.keywords==null}
+<meta name="keywords" content="{$tdk.keywords}"/>
+{else}
+<meta name="keywords" content="{$con.keywords}"/>
+{/if}
+{/volist}
+{/volist}
+{/block}
+{block name="CSS"} 
+<link rel="stylesheet" type="text/css" href="__INDEX__/css/lianxiwomen.css">
+<link rel="stylesheet" href="__INDEX__/css/public.css">
+<link rel="stylesheet" href="__INDEX__/fonts//iconfont.css">
+<link rel="stylesheet" href="__INDEX__/font_pci5q13lrrk/iconfont.css">
+<script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+{/block}
+{block name="content"}
+  <!--内容-->
+  <a name="navbar">
+  <div id="tabs">
+    <div class="content">
+    <div class="gwidth">
+       <ul class="tab">
+        <li class="cur">
+          {volist name="conResult" id="con"}
+          <a href="/{$con.href}.html">{$con.name}</a></li>  
+          {/volist}   
+        </ul>
+         <ul class="con_top_right clearfix">
+         <li><span class="xfz iconfont1 icon-jia-"></span></li>
+         <li style="margin-left:10px;"><a href="">您的位置：</a></li>
+         <li><a href="/index.html">首页&gt;</a></li>
+        <li style="margin-right:0px; color:#30569D;">
+          {volist name="conResult" id="con"}
+          <a href="/{$con.href}.html" id="fd1">{$con.name}</a></li>
+          {/volist}      
+        </ul> 
+    </div>
+  </div>
+  <!-- content -->
+  <div class="cont gwidth clearfix">
+  <div class="cont_right fr">
+    {volist name="contactResult" id="contact"}
+            <h4>{$contact.name}</h4>
+        <ul>
+          <li><span>联系电话:</span>{$contact.phone}</li>
+          <li><span>E-mail:</span>{$contact.email}</li>
+          <li><span>联系地址:</span>{$contact.url}</li>
+        </ul>
+    {/volist}
+  </div>
+  <!--地图开始-->
+  <!--引用百度地图API-->
+    <!--百度地图容器-->
+    <div style="width:697px;height:550px;border:#ccc solid 1px;" id="dituContent"></div>
+    <script src="__INDEX__/js/map.js"></script>
+  </div>
+</div>
+  </a>
+  {/block}

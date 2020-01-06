@@ -1,0 +1,125 @@
+{extend name="index/base"/}
+{block name="tdk"} 
+{volist name="tdkResult" id="tdk"}
+{volist name="newResult" id="new"}
+{if $new.title==null}
+<title>{$tdk.title}</title>
+{else}
+<title>{$new.title}</title>
+{/if}
+<meta name="description" content="{$new.description}" />
+{if $new.keywords==null}
+<meta name="keywords" content="{$tdk.keywords}"/>
+{else}
+<meta name="keywords" content="{$new.keywords}"/>
+{/if}
+{/volist}
+{/volist}
+{/block}
+{block name="CSS"} 
+<link rel="stylesheet" href="__INDEX__/css/news.css">
+<link rel="stylesheet" href="__INDEX__/fonts/iconfont.css">
+<link rel="stylesheet" href="__INDEX__/font_pci5q13lrrk/iconfont.css">
+{/block}
+{block name="content"}
+  <!--nav-->
+	<div id="tabs">
+		<div class="content">
+			<div class="gwidth">
+				<ul class="tab">
+					<li id="qb" class="{if $mains==null}cur{/if}"><a href="/news.html">全部</a></li>
+					{volist name="NewsResult" id="News"}
+					<li class="{if $News.name==$mains}cur{/if}"><a href="/news1/{$News.id}.html">{$News.name}</a></li>
+					{/volist}
+				</ul>
+				<ul class="con_top_right clearfix">
+					<li><span class="xfz iconfont1 icon-jia-"></span></li>
+					<li style="margin-left:8px;"><a href="">您的位置：</a></li>
+					<li><a href="/index.html">首页&gt;</a></li>
+					<li><a href="/news.html">新闻中心&gt;</a></li>
+					{if $mains!=null}
+					{volist name="NewsResult" id="News"}
+					{if $News.name==$mains}
+					<li><a href="/news1/{$News.id}.html" id="fd1">{$News.name}</a></li>
+					{/if}
+					{/volist}
+					{else}
+					<li><a href="/news.html" id="fd1">全部</a></li>
+					{/if}
+				</ul>
+			</div>
+		</div>
+		<div class="wrapper clearfix">
+			<div class="news_1 clearfix">
+				{volist name="NewsaResult" id="newsa"}
+				{if $key==0 || ($key+1)%7==0}
+				<a href="/newsa/{$newsa.id}.html">
+				<div class="news_left hove">
+					<div class="new_1">
+						<img src="{$newsa.img}" alt="{$newsa.name}"/>
+					</div>
+					<div class="new_l">
+						<h4>{$newsa.name}</h4>
+						  <div class="desc">
+						  	<span><i></i>{$newsa.update_time|date="Y-m-d",###}</span>
+						  	<span><i></i>{$newsa.visit}</span>
+						  	<span><i></i>{$newsa.num}</span>
+						  </div>
+						<p class="text">
+								{$newsa.editorValue|htmlspecialchars_decode|strip_tags}		
+						</p>
+					</div>
+				</div>
+			    </a>
+			    {/if}
+			    {/volist}
+				<div class="news_right">
+					<ul class="list_new">
+						{volist name="NewsaResult" id="newsa"}
+						{if $key==1 || ($key+1)%8==0 || $key==2 || ($key+1)%9==0}
+						<a href="/newsa/{$newsa.id}.html">
+						<li class="hove">
+							<div class="news_lef"><img src="{$newsa.img}" alt="{$newsa.name}" /></div>
+							<div class="news_rig">
+								<h4>{$newsa.name}</h4>
+								<div class="desc">
+									<span><i></i>{$newsa.update_time|date="Y-m-d",###}</span>
+									<span><i></i>{$newsa.visit}</span>
+									<span><i></i>{$newsa.num}</span>
+								</div>
+								<p class="text1">
+								{$newsa.editorValue|htmlspecialchars_decode|strip_tags}		
+							    </p>
+							</div>
+						</li>
+						</a>
+						{/if}
+						{/volist}
+					</ul>
+				</div>
+			</div>
+			<div class="news_2 clearfix">
+				<ul class="news_2_list">
+					{volist name="NewsaResult" id="newsa"}
+					{if $key==3 || ($key+1)%10==0 || $key==4 || ($key+1)%11==0 || $key==5 || ($key+1)%12==0}
+					<a href="/newsa/{$newsa.id}.html">
+					<li class="hove">
+						<h4>{$newsa.name}</h4>
+						<div class="desc too">
+							<span><i></i>{$newsa.update_time|date="Y-m-d",###}</span>
+							<span><i></i>{$newsa.visit}</span>
+							<span><i></i>{$newsa.num}</span>
+						</div>
+						<p class="text_3">
+							{$newsa.editorValue|htmlspecialchars_decode|strip_tags}
+						</p>
+					</li>
+					</a>
+					{/if}
+					{/volist}
+				</ul>
+			</div>
+		</div>
+	</div>
+	{$page}
+{/block}

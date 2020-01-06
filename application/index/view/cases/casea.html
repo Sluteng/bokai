@@ -1,0 +1,99 @@
+{extend name="index/base"/}
+{block name="tdk"} 
+{volist name="tdkResult" id="tdk"}
+{volist name="casesResult" id="cases"}
+{if $cases.title==null}
+<title>{$tdk.title}</title>
+{else}
+<title>{$cases.title}</title>
+{/if}
+<meta name="description" content="{$cases.description}" />
+{if $cases.keywords==null}
+<meta name="keywords" content="{$tdk.keywords}"/>
+{else}
+<meta name="keywords" content="{$cases.keywords}"/>
+{/if}
+{/volist}
+{/volist}
+{/block}
+{block name="CSS"} 
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="__INDEX__/css/page.css">
+<link rel="stylesheet" href="__INDEX__/css/public.css">
+<!-- CSS -->
+{/block}
+{block name="content"} 
+<!--nav-->
+<div id="tabs">
+  <div class="content">
+  <div class="gwidth">
+     <ul class="tab">
+           <li id="qb" class="{if $mainc==null}cur{/if}">
+            <a href="/cases.html">全部</a>
+           </li>
+           {volist name="maincaseResult" id="maincase"}
+           <li id="dl" class="{if $maincase.name==$mainc}cur{/if}">
+             <a href="/case1/{$maincase.id}.html">{$maincase.name}</a>
+           </li>
+           {/volist}
+      </ul> 
+      <ul class="con_top_right clearfix">
+         <li><span class="xfz iconfont1 icon-jia-"></span></li>
+         <li style="margin-left:10px;"><a href="#">您的位置：</a></li>
+         <li><a href="/index.html">首页&gt;</a></li>
+         <li><a href="/case.html">案例展示&gt;</a></li>
+         <li style="margin-right:0px; color:#30569D;">
+          {if $mainc!=null}
+          {volist name="maincaseResult" id="maincase"}
+          {if $maincase.name==$mainc}
+          <a href="/case1/{$maincase.id}.html" id="fd1">{$maincase.name}</a>
+          {/if}
+          {/volist}
+          {else}
+          <a href="/cases.html" id="fd1">全部</a>
+          {/if}
+        </li>
+      </ul> 
+  </div>
+</div>
+<!-- content -->
+<div class="cont gwidth">
+  <div class="cont_btm"> 
+    {volist name="casesResult" id="cases"}
+  <div class="zfanli">
+    <p class="hds">{$cases.name}</p>
+  </div>
+  <div class="zhanshi">
+    <img src="{$cases.img}" height="400" width="581" alt="{$cases.name}">
+    <h4>案例说明:</h4>
+    <div class="form">
+      {$cases.editorValue|htmlspecialchars_decode}
+    </div>
+  </div>
+   {/volist}
+  <div class="cont_xyp">
+      {volist name="prev" id="pre"}
+       <div class="fl" style="margin-left:20px;">
+        {if $mainc!=null}
+        <a href="/casea/{$pre.id}.html">上一篇:{$pre.name}</a>
+        {else}
+         <a href="/casew/{$pre.id}.html">上一篇:{$pre.name}</a>
+         {/if}
+      </div>
+      {/volist}
+      {volist name="next" id="nex"}
+       <div class="fr" style="margin-right:20px;">
+         {if $mainc!=null}
+        <a href="/casea/{$nex.id}.html">下一篇:{$nex.name}</a>
+        {else}
+        <a href="/casew/{$nex.id}.html">下一篇:{$nex.name}</a>
+        {/if}
+      </div>
+       {/volist}
+<!--      <div class="fl" style="margin-left:20px;"><a href="/page/18.html">上一篇:山东聊城厂区太阳能路灯照明工程</a></div>
+     <div class="fr" style="margin-right:20px;"><a href="/page/20.html">下一篇:河北张家口商业楼体亮化</a></div> -->
+  </div>
+</div>
+</div>
+</div>
+{/block}
