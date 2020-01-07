@@ -137,10 +137,12 @@
   width:281px;
   border:1px solid #CDCDCD;
   border-top:none;
-  line-height: 30px;
+  line-height: 25px;
+  font-size: 14px;
 }
 .ziye_box_tp .t_p h4{
   text-indent: 1em;
+  font-size: 16px;
 }
 .ziye_box_tp .t_p p{
   text-overflow: ellipsis;
